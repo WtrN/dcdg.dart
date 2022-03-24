@@ -29,6 +29,9 @@
       <excludeFolder url="file://$MODULE_DIR$/test/fixtures/bindir/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/test/fixtures/bindir/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/test/fixtures/bindir/build" />
+      <excludeFolder url="file://$MODULE_DIR$/test/fixtures/freezed_gen/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/test/fixtures/freezed_gen/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/test/fixtures/freezed_gen/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
