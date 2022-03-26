@@ -4,6 +4,7 @@ import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:dcdg/src/class_element_collector.dart';
+import 'package:dcdg/src/find_exclude_file_rule.dart';
 import 'package:path/path.dart' as path;
 
 /// Fetch and return the desired class elements from the package
@@ -33,9 +34,13 @@ Future<Iterable<ClassElement>> findClassElements({
     ],
   );
 
+  final globList = findExcludeFileRule();
+
   final dartFiles = Directory(makePackageSubPath(searchPath))
       .listSync(recursive: true)
-      .where((file) => path.extension(file.path) == '.dart' && path.extension(file.path,2) != '.freezed.dart'&& path.extension(file.path,2) != '.g.dart')
+      .where((file) => path.extension(file.path) == '.dart')
+      .where(
+          (file) => globList.where((glob) => glob.matches(file.path)).isEmpty)
       .where((file) => !exportedOnly || !file.path.contains('lib/src/'));
 
   final collector = ClassElementCollector(
